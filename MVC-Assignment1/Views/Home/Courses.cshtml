@@ -1,0 +1,49 @@
+﻿@model List<MVC_Assignment1.Models.Classes.Course>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>COURSES</h1>
+        </div>
+        <div class="col-md-8">
+            @if (Model.Any())
+            {
+                foreach (var course in Model)
+                {
+                    <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>
+                                Course Name
+                            </th>
+                            <th>
+                                Number Of Hours
+                            </th>
+                            <th>
+                                Number Of Enrollments
+                            </th>
+                            <th>
+                                View Details
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                @course.Name
+                            </td>
+                            <td>
+                                @course.NumberOfHours
+                            </td>
+                            <td>
+                                @course.Users.Count()
+                            </td>
+                            <td>
+                                @Html.ActionLink("Details", "CourseDetails", "Home", new { id = course.Id }, null)
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            }
+        }
+        </div>
+    </div>
+    </div>

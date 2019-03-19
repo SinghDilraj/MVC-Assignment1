@@ -1,0 +1,26 @@
+﻿@model MVC_Assignment1.Models.Classes.Course
+
+<div class="container">
+    <h1>
+        Course Details
+    </h1>
+    <div class="row">
+        <div class="col-md-10">
+            <h3 class="font-weight-bold"> Course Name </h3>
+            <h4>@Model.Name</h4>
+        </div>
+        <div class="col-md-10">
+            <h3 class="font-weight-bold"> Number Of Hours </h3>
+            <h4>@Model.NumberOfHours</h4>
+        </div>
+        <div class="col-md-10">
+            <h3 class="font-weight-bold"> Number Of Enrollments </h3>
+            <h4>@Model.Users.Count()</h4>
+        </div>
+        <div class="col-md-10">
+            <h3 class="font-weight-bold"> List Of Users Enrolled </h3>
+            @Html.Partial("_Users", Model.Users)
+        </div>
+        
+    </div>
+</div>
