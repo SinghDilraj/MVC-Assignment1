@@ -8,42 +8,50 @@
         <div class="col-md-8">
             @if (Model.Any())
             {
-                foreach (var course in Model)
-                {
-                    <div class="table-responsive">
+                <div class="table-responsive">
                     <table class="table table-bordered">
-                        <tr>
-                            <th>
-                                Course Name
-                            </th>
-                            <th>
-                                Number Of Hours
-                            </th>
-                            <th>
-                                Number Of Enrollments
-                            </th>
-                            <th>
-                                View Details
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                @course.Name
-                            </td>
-                            <td>
-                                @course.NumberOfHours
-                            </td>
-                            <td>
-                                @course.Users.Count()
-                            </td>
-                            <td>
-                                @Html.ActionLink("Details", "CourseDetails", "Home", new { id = course.Id }, null)
-                            </td>
-                        </tr>
+                        <thead>
+                            <tr class="info">
+                                <th>
+                                    Course Name
+                                </th>
+                                <th>
+                                    Number Of Hours
+                                </th>
+                                <th>
+                                    Number Of Enrollments
+                                </th>
+                                <th>
+                                    View Details
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var course in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @course.Name
+                                    </td>
+                                    <td>
+                                        @course.NumberOfHours
+                                    </td>
+                                    <td>
+                                        @course.Users.Count()
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Details", "CourseDetails", "Home", new { id = course.Id }, null)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
                     </table>
                 </div>
             }
-        }
+            else
+            {
+                <h3>No Couses Available Yet.</h3>
+            }
         </div>
     </div>
-    </div>
+</div>

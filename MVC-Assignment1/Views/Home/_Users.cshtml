@@ -1,10 +1,17 @@
 ﻿@model List<MVC_Assignment1.Models.ApplicationUser>
 
-<ol>
-    @foreach (var user in Model)
-    {
-        <li>
-            @user.FullName
-        </li>
-    }
-</ol>
+@if (Model.Any())
+{
+    <ol>
+        @foreach (var user in Model)
+        {
+            <li>
+                @user.FullName
+            </li>
+        }
+    </ol>
+}
+else
+{
+    <h4>No Users Found.</h4>
+}

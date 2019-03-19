@@ -51,7 +51,7 @@ namespace MVC_Assignment1.Controllers
                 return RedirectToAction(nameof(HomeController.Courses));
             }
 
-            var course = DbContext.Courses.FirstOrDefault(p => p.Id == id);
+            var course = DbContext.Courses.FirstOrDefault(p => p.Id == id.Value);
 
             return View(course);
         }
