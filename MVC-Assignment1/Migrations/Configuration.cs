@@ -48,6 +48,17 @@ namespace MVC_Assignment1.Migrations
 
             context.SaveChanges();
 
+            Course course3 = new Course();
+            course3.Name = "Network Security Diploma";
+            course3.NumberOfHours = 400;
+
+            if (!context.Courses.Any(p => p.Name == course3.Name))
+            {
+                context.Courses.Add(course3);
+            }
+
+            context.SaveChanges();
+
             //UserManager
             var userManager =
                new UserManager<ApplicationUser>(
