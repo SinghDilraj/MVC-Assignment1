@@ -30,13 +30,23 @@ namespace MVC_Assignment1.Migrations
             course1.Name = "Software Developer";
             course1.NumberOfHours = 330;
 
-            context.Courses.AddOrUpdate(p => p.Name, course1);
+            if(!context.Courses.Any(p => p.Name == course1.Name))
+            {
+                context.Courses.Add(course1);
+            }
+
+            context.SaveChanges();
 
             Course course2 = new Course();
             course2.Name = "Cyber Defense";
             course2.NumberOfHours = 340;
 
-            context.Courses.AddOrUpdate(p => p.Name, course2);
+            if (!context.Courses.Any(p => p.Name == course2.Name))
+            {
+                context.Courses.Add(course2);
+            }
+
+            context.SaveChanges();
 
             //UserManager
             var userManager =
@@ -52,9 +62,13 @@ namespace MVC_Assignment1.Migrations
                 user1 = new ApplicationUser();
                 user1.FirstName = "John";
                 user1.LastName = "Doe";
-                user1.Courses.Add(course1);
                 user1.UserName = "johndoe@test.com";
                 user1.Email = "johndoe@test.com";
+
+                if (!user1.Courses.Any(p => p.Name == course1.Name))
+                {
+                    user1.Courses.Add(course1);
+                }
 
                 userManager.Create(user1, "Password-1");
             }
@@ -65,20 +79,30 @@ namespace MVC_Assignment1.Migrations
                     .First(p => p.UserName == "johndoe@test.com");
             }
 
+            context.SaveChanges();
+
             ApplicationUser user2;
 
             if (!context.Users.Any(
                 p => p.UserName == "janedoe@test.com"))
             {
                 user2 = new ApplicationUser();
-                user1.FirstName = "Jane";
-                user1.LastName = "Doe";
-                user2.Courses.Add(course1);
-                user2.Courses.Add(course2);
+                user2.FirstName = "Jane";
+                user2.LastName = "Doe";
                 user2.UserName = "janedoe@test.com";
                 user2.Email = "janedoe@test.com";
 
-                userManager.Create(user1, "Password-1");
+                if (!user2.Courses.Any(p => p.Name == course1.Name))
+                {
+                    user2.Courses.Add(course1);
+                }
+
+                if (!user2.Courses.Any(p => p.Name == course2.Name))
+                {
+                    user2.Courses.Add(course2);
+                }
+
+                userManager.Create(user2, "Password-1");
             }
             else
             {
@@ -86,6 +110,8 @@ namespace MVC_Assignment1.Migrations
                     .Users
                     .First(p => p.UserName == "janedoe@test.com");
             }
+
+            context.SaveChanges();
         }
     }
 }

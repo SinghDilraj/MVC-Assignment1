@@ -13,16 +13,16 @@ namespace MVC_Assignment1.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string FullName {
-            get { return FullName; }
-            private set { FullName = FirstName + "" + LastName; } }
+        public string FullName
+        {
+            get { return FirstName + "" + LastName; }
+        }
 
         public virtual List<Course> Courses { get; set; }
 
         public ApplicationUser()
         {
             Courses = new List<Course>();
-            FullName = FirstName + " " + LastName;
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
